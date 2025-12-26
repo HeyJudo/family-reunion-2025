@@ -23,11 +23,11 @@ export default function Navbar() {
             aria-label="Go to homepage"
           >
             <div className="w-12 h-12 rounded-full bg-[#C5A059] flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-              <span className="text-white font-serif text-xl font-bold">S</span>
+              <span className="text-white font-serif text-xl font-bold">O</span>
             </div>
             <div className="hidden sm:block">
               <p className="font-serif text-xl text-[#2D3748] font-semibold">
-                Sangalang
+                Onofre Clan
               </p>
               <p className="text-sm text-[#2D3748]/70 -mt-1">
                 Reunion 2025

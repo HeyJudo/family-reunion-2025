@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Images } from "lucide-react";
+import { ArrowLeft, Images, Lightbulb } from "lucide-react";
 import PhotoGrid from "@/components/PhotoGrid";
 import { galleryPhotos, eventDetails } from "@/data/mockData";
 import type { Metadata } from "next";
@@ -51,7 +51,7 @@ export default function GalleryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left">
             <div className="w-12 h-12 rounded-full bg-[#C5A059] flex items-center justify-center flex-shrink-0">
-              <span className="text-white text-2xl">💡</span>
+              <Lightbulb size={24} className="text-white" />
             </div>
             <p className="text-[#2D3748]/80 text-lg">
               <strong>Tip:</strong> Click or tap on any photo to view it larger. 

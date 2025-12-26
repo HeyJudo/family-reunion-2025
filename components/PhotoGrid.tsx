@@ -93,21 +93,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
                 />
                 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
-                
-                {/* Caption Overlay */}
-                {photo.caption && (
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white font-medium text-lg">
-                      {photo.caption}
-                    </p>
-                    {photo.category && (
-                      <span className="inline-block mt-1 px-2 py-1 bg-[#C5A059] text-white text-sm rounded-full">
-                        {photo.category}
-                      </span>
-                    )}
-                  </div>
-                )}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
               </div>
             </button>
           </div>

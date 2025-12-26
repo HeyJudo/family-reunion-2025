@@ -178,9 +178,9 @@ export const mainVideo: Video = {
 
 // Event details
 export const eventDetails = {
-  familyName: "Sangalang",
-  date: "December 25, 2025",
-  venue: "Grandma's Garden Estate",
-  location: "Tagaytay City, Philippines",
-  tagline: "Where memories bloom and love grows stronger",
+  familyName: "Onofre",
+  date: "December 30, 2025",
+  venue: "Onofre Residences",
+  location: "Philippines",
+  tagline: "Welcome to the Onofre Family",
 };
