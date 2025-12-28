@@ -178,9 +178,9 @@ export const mainVideo: Video = {
 
 // Event details
 export const eventDetails = {
-  familyName: "Onofre",
+  familyName: "Onofre & Aurora",
   date: "December 30, 2025",
   venue: "Onofre Residences",
   location: "Philippines",
-  tagline: "Welcome to the Onofre Family",
+  tagline: "Where Our Family Story Continues",
 };

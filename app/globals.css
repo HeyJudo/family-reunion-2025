@@ -3,15 +3,22 @@
 
 @import "tailwindcss";
 
-/* Modern Heritage Theme - Custom Properties */
+/* Encanto Theme - Custom Properties */
 :root {
-  --background: #FDFBF7;
-  --foreground: #2D3748;
-  --primary: #C5A059;
-  --primary-hover: #B8923E;
-  --secondary: #3D4F5F;
-  --muted: #E8E4DC;
-  --border: #D4CFC4;
+  --background: #fefefe;
+  --background-warm: #faf8f5;
+  --foreground: #134e4a;
+  --foreground-muted: #115e59;
+  --primary: #14b8a6;
+  --primary-hover: #0d9488;
+  --primary-light: #5eead4;
+  --secondary: #f59e0b;
+  --secondary-hover: #d97706;
+  --accent: #fbbf24;
+  --muted: #f0fdfa;
+  --muted-warm: #ecfdf5;
+  --border: #99f6e4;
+  --border-subtle: #ccfbf1;
 }
 
 @theme inline {
@@ -24,6 +31,7 @@
   --color-border: var(--border);
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
+  --font-encanto: var(--font-encanto), 'Playfair Display', Georgia, serif;
 }
 
 /* Base Styles */
@@ -58,7 +66,7 @@ button, a {
   min-width: 44px;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Encanto themed */
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -68,8 +76,12 @@ button, a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
+  background: linear-gradient(180deg, var(--primary) 0%, #0d9488 100%);
   border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #0d9488 0%, #115e59 100%);
 }
 
 /* Animation utilities */
@@ -159,4 +171,83 @@ button, a {
 .masonry-item {
   break-inside: avoid;
   margin-bottom: 1rem;
+}
+
+/* Encanto-style text effects */
+.font-encanto {
+  font-family: var(--font-encanto), 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.02em;
+}
+
+/* Dynamic gradient animation for Encanto text */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Encanto sparkle animation - Subtle shimmer effect */
+@keyframes sparkleShimmer {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  30% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  70% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  85% {
+    opacity: 0.95;
+    transform: scale(1.12);
+  }
+}
+
+.animate-sparkle-subtle {
+  animation: sparkleShimmer 3s ease-in-out infinite;
+}
+
+/* Falling flowers animation */
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(25vh) rotate(45deg) translateX(10px) scale(0.95);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) rotate(-20deg) translateX(-15px) scale(0.9);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(75vh) rotate(30deg) translateX(8px) scale(0.85);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100vh) rotate(-10deg) translateX(-5px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.animate-fall {
+  animation: fall linear forwards;
 }

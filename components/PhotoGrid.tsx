@@ -77,7 +77,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
           >
             <button
               onClick={() => openLightbox(index)}
-              className="relative w-full group rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#C5A059]/50"
+              className="relative w-full group rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-teal-400/50"
               aria-label={`View photo: ${photo.alt}`}
             >
               <div
@@ -180,7 +180,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
               {/* Download Button */}
               <button
                 onClick={() => handleDownload(selectedPhoto)}
-                className="flex items-center gap-2 px-6 py-3 bg-[#C5A059] hover:bg-[#B8923E] text-white font-medium rounded-full transition-colors shadow-lg"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-teal-900 font-medium rounded-full transition-all shadow-lg"
                 aria-label="Save photo"
               >
                 <Download size={22} />

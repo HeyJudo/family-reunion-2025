@@ -25,7 +25,7 @@ export default function VideoPlayer({
   return (
     <div className="w-full max-w-5xl mx-auto">
       {/* Video Container */}
-      <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-[#2D3748]">
+      <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-teal-900">
         {!isPlaying ? (
           // Thumbnail with Play Button
           <div className="relative w-full h-full group cursor-pointer" onClick={() => setIsPlaying(true)}>
@@ -48,7 +48,7 @@ export default function VideoPlayer({
               className="absolute inset-0 flex items-center justify-center"
               aria-label={`Play video: ${title}`}
             >
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#C5A059] flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300 ring-4 ring-white/20">
                 <Play size={40} className="text-white ml-1" fill="white" />
               </div>
             </button>
