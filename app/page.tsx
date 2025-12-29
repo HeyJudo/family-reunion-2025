@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Play, Images, Calendar, MapPin, Heart } from "lucide-react";
-import { eventDetails, featuredPhotos, familyVideo } from "@/data/mockData";
+import { ArrowRight, Calendar, MapPin } from "lucide-react";
+import VideoPlayer from "@/components/VideoPlayer";
 import ConfettiCelebration from "@/components/ConfettiCelebration";
+import { highlightPhotos, mainVideo, eventDetails } from "@/data/mockData";
 
 export default function HomePage() {
   return (
@@ -27,50 +28,54 @@ export default function HomePage() {
 
           {/* Main Headline - Encanto Style */}
           <div className="relative inline-block animate-fade-up-delay-2">
-            {/* Golden sparkle dots around text - Encanto style */}
-            {/* Top sparkles */}
-            <span className="absolute -top-3 left-[15%] w-1.5 h-1.5 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '0s' }} />
-            <span className="absolute -top-5 left-[35%] w-2 h-2 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '0.4s' }} />
-            <span className="absolute -top-2 left-[55%] w-1 h-1 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '0.8s' }} />
-            <span className="absolute -top-4 left-[75%] w-1.5 h-1.5 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '1.2s' }} />
-            <span className="absolute -top-6 right-[10%] w-1 h-1 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '1.6s' }} />
+            {/* Subtle golden sparkle dots like Encanto logo */}
+            {/* Left side */}
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '5%', left: '-6px', width: '7px', height: '7px', animationDelay: '0s', background: 'radial-gradient(circle, #fbbf24 0%, #b45309 100%)', boxShadow: '0 0 3px 1px rgba(251, 191, 36, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '18%', left: '1%', width: '4px', height: '4px', animationDelay: '1.2s', background: 'radial-gradient(circle, #92400e 0%, #451a03 100%)', boxShadow: '0 0 2px 1px rgba(146, 64, 14, 0.4)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '32%', left: '-4px', width: '5px', height: '5px', animationDelay: '0.6s', background: 'radial-gradient(circle, #fcd34d 0%, #d97706 100%)', boxShadow: '0 0 3px 1px rgba(252, 211, 77, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '48%', left: '2%', width: '3px', height: '3px', animationDelay: '1.8s', background: 'radial-gradient(circle, #d97706 0%, #78350f 100%)', boxShadow: '0 0 2px 1px rgba(217, 119, 6, 0.4)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '62%', left: '-3px', width: '6px', height: '6px', animationDelay: '0.4s', background: 'radial-gradient(circle, #fbbf24 0%, #92400e 100%)', boxShadow: '0 0 3px 1px rgba(251, 191, 36, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '78%', left: '1%', width: '4px', height: '4px', animationDelay: '2.0s', background: 'radial-gradient(circle, #78350f 0%, #451a03 100%)', boxShadow: '0 0 2px 1px rgba(120, 53, 15, 0.4)' }} />
             
-            {/* Left side sparkles */}
-            <span className="absolute top-[20%] -left-4 w-1.5 h-1.5 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '0.2s' }} />
-            <span className="absolute top-[45%] -left-6 w-2 h-2 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '0.6s' }} />
-            <span className="absolute top-[70%] -left-3 w-1 h-1 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '1.0s' }} />
+            {/* Right side */}
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '8%', right: '-5px', width: '6px', height: '6px', animationDelay: '0.3s', background: 'radial-gradient(circle, #fbbf24 0%, #92400e 100%)', boxShadow: '0 0 3px 1px rgba(251, 191, 36, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '22%', right: '1%', width: '4px', height: '4px', animationDelay: '1.5s', background: 'radial-gradient(circle, #78350f 0%, #451a03 100%)', boxShadow: '0 0 2px 1px rgba(120, 53, 15, 0.4)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '38%', right: '-4px', width: '5px', height: '5px', animationDelay: '0.9s', background: 'radial-gradient(circle, #fcd34d 0%, #b45309 100%)', boxShadow: '0 0 3px 1px rgba(252, 211, 77, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '52%', right: '2%', width: '3px', height: '3px', animationDelay: '2.1s', background: 'radial-gradient(circle, #d97706 0%, #78350f 100%)', boxShadow: '0 0 2px 1px rgba(217, 119, 6, 0.4)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '68%', right: '-3px', width: '6px', height: '6px', animationDelay: '0.7s', background: 'radial-gradient(circle, #fbbf24 0%, #b45309 100%)', boxShadow: '0 0 3px 1px rgba(251, 191, 36, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '82%', right: '1%', width: '4px', height: '4px', animationDelay: '1.3s', background: 'radial-gradient(circle, #92400e 0%, #451a03 100%)', boxShadow: '0 0 2px 1px rgba(146, 64, 14, 0.4)' }} />
             
-            {/* Right side sparkles */}
-            <span className="absolute top-[15%] -right-5 w-1 h-1 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '0.3s' }} />
-            <span className="absolute top-[40%] -right-4 w-1.5 h-1.5 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '0.7s' }} />
-            <span className="absolute top-[65%] -right-6 w-2 h-2 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '1.1s' }} />
+            {/* Top scattered */}
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '-4px', left: '15%', width: '5px', height: '5px', animationDelay: '0.5s', background: 'radial-gradient(circle, #fbbf24 0%, #d97706 100%)', boxShadow: '0 0 3px 1px rgba(251, 191, 36, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '-2px', left: '35%', width: '3px', height: '3px', animationDelay: '1.7s', background: 'radial-gradient(circle, #92400e 0%, #451a03 100%)', boxShadow: '0 0 2px 1px rgba(146, 64, 14, 0.4)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '-3px', right: '38%', width: '4px', height: '4px', animationDelay: '1.1s', background: 'radial-gradient(circle, #d97706 0%, #78350f 100%)', boxShadow: '0 0 2px 1px rgba(217, 119, 6, 0.4)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ top: '-2px', right: '18%', width: '3px', height: '3px', animationDelay: '2.3s', background: 'radial-gradient(circle, #fcd34d 0%, #b45309 100%)', boxShadow: '0 0 2px 1px rgba(252, 211, 77, 0.4)' }} />
             
-            {/* Bottom sparkles */}
-            <span className="absolute -bottom-3 left-[20%] w-1 h-1 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '0.5s' }} />
-            <span className="absolute -bottom-5 left-[40%] w-1.5 h-1.5 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '0.9s' }} />
-            <span className="absolute -bottom-2 left-[60%] w-2 h-2 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '1.3s' }} />
-            <span className="absolute -bottom-4 left-[80%] w-1 h-1 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '1.7s' }} />
+            {/* Bottom scattered */}
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ bottom: '12%', left: '12%', width: '4px', height: '4px', animationDelay: '1.0s', background: 'radial-gradient(circle, #fbbf24 0%, #b45309 100%)', boxShadow: '0 0 2px 1px rgba(251, 191, 36, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ bottom: '5%', left: '28%', width: '3px', height: '3px', animationDelay: '2.5s', background: 'radial-gradient(circle, #78350f 0%, #451a03 100%)', boxShadow: '0 0 2px 1px rgba(120, 53, 15, 0.4)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ bottom: '8%', left: '48%', width: '5px', height: '5px', animationDelay: '0.2s', background: 'radial-gradient(circle, #fcd34d 0%, #d97706 100%)', boxShadow: '0 0 3px 1px rgba(252, 211, 77, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ bottom: '3%', right: '35%', width: '3px', height: '3px', animationDelay: '1.4s', background: 'radial-gradient(circle, #d97706 0%, #92400e 100%)', boxShadow: '0 0 2px 1px rgba(217, 119, 6, 0.4)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ bottom: '10%', right: '20%', width: '4px', height: '4px', animationDelay: '0.8s', background: 'radial-gradient(circle, #fbbf24 0%, #92400e 100%)', boxShadow: '0 0 2px 1px rgba(251, 191, 36, 0.5)' }} />
+            <span className="absolute rounded-full pointer-events-none animate-sparkle-subtle" style={{ bottom: '6%', right: '8%', width: '3px', height: '3px', animationDelay: '1.9s', background: 'radial-gradient(circle, #92400e 0%, #451a03 100%)', boxShadow: '0 0 2px 1px rgba(146, 64, 14, 0.4)' }} />
             
-            {/* Corner accent sparkles */}
-            <span className="absolute -top-2 -left-2 w-1 h-1 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '1.4s' }} />
-            <span className="absolute -top-3 -right-3 w-1.5 h-1.5 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '1.8s' }} />
-            <span className="absolute -bottom-2 -left-3 w-1.5 h-1.5 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '2.0s' }} />
-            <span className="absolute -bottom-3 -right-2 w-1 h-1 rounded-full animate-sparkle-subtle" style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', animationDelay: '2.2s' }} />
-
-            <h1 
-              className="font-[family-name:var(--font-encanto)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-clip-text text-transparent pb-2"
-              style={{
-                backgroundImage: 'linear-gradient(135deg, #14b8a6 0%, #fbbf24 25%, #06b6d4 50%, #f59e0b 75%, #10b981 100%)',
-                backgroundSize: '200% 200%',
-                animation: 'gradientShift 15s ease-in-out infinite',
-              }}
-            >
-              {eventDetails.familyName}
+            <h1 className="font-encanto text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.1] mb-4">
+              {/* Encanto teal-turquoise-green-gold gradient */}
+              <span 
+                className="bg-clip-text text-transparent inline-block hover:scale-105 transition-transform duration-500"
+                style={{
+                  backgroundImage: 'linear-gradient(135deg, #0d9488 0%, #f59e0b 12%, #14b8a6 24%, #fbbf24 36%, #06b6d4 48%, #d97706 60%, #10b981 72%, #f59e0b 84%, #2dd4bf 100%)',
+                  backgroundSize: '200% 200%',
+                  animation: 'gradientShift 15s ease-in-out infinite',
+                }}
+              >
+                Onofre & Aurora
+              </span>
             </h1>
             
             {/* Family Reunion 2025 */}
             <p 
-              className="font-[family-name:var(--font-encanto)] text-2xl sm:text-3xl md:text-4xl font-semibold mt-2 bg-clip-text text-transparent"
+              className="font-encanto text-3xl sm:text-4xl md:text-5xl lg:text-6xl bg-clip-text text-transparent hover:scale-105 transition-transform duration-500"
               style={{
                 backgroundImage: 'linear-gradient(135deg, #14b8a6 0%, #fbbf24 15%, #06b6d4 30%, #f59e0b 45%, #10b981 60%, #d97706 75%, #2dd4bf 90%, #fbbf24 100%)',
                 backgroundSize: '200% 200%',
@@ -86,21 +91,21 @@ export default function HomePage() {
             {eventDetails.tagline}
           </p>
 
-          {/* Event Details - Encanto styled */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-teal-700/80 animate-fade-up-delay-4">
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-teal-100">
-              <Calendar size={20} className="text-teal-500" />
-              <span className="font-medium">{eventDetails.date}</span>
+          {/* Event Details */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-teal-700/80 mb-12 animate-fade-up-delay-4">
+            <div className="flex items-center gap-2 text-lg">
+              <Calendar size={24} className="text-amber-500" />
+              <span>{eventDetails.date}</span>
             </div>
             <div className="hidden sm:block w-2 h-2 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400" />
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-teal-100">
-              <MapPin size={20} className="text-teal-500" />
-              <span className="font-medium">{eventDetails.location}</span>
+            <div className="flex items-center gap-2 text-lg">
+              <MapPin size={24} className="text-amber-500" />
+              <span>{eventDetails.venue}</span>
             </div>
           </div>
 
           {/* Decorative Divider */}
-          <div className="flex items-center justify-center gap-3 mt-10 animate-fade-up-delay-5">
+          <div className="flex items-center justify-center gap-4 mb-8 animate-fade-up-delay-5">
             <div className="h-px w-16 bg-gradient-to-r from-transparent to-teal-300" />
             <div className="w-3 h-3 rounded-full bg-gradient-to-r from-teal-400 to-amber-400" />
             <div className="h-px w-16 bg-gradient-to-l from-transparent to-teal-300" />
@@ -108,110 +113,95 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick Stats Section */}
+      {/* Main Event Video Section */}
       <section className="py-12 sm:py-16 bg-gradient-to-b from-teal-50/50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
-            {/* Photos Stat */}
-            <div className="text-center p-6 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow border border-teal-50">
-              <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center">
-                <Images size={28} className="text-white" />
-              </div>
-              <p className="text-4xl font-bold text-teal-700">50+</p>
-              <p className="text-teal-600/70 font-medium">Photos Captured</p>
-            </div>
+          {/* Section Header */}
+          <div className="text-center mb-10 animate-fade-up">
+            <h2 className="font-serif text-3xl sm:text-4xl text-teal-800 font-semibold mb-3">
+              The Main Event
+            </h2>
+            <p className="text-teal-600/70 text-lg max-w-xl mx-auto">
+              Watch our reunion highlights and relive those beautiful moments
+            </p>
+          </div>
 
-            {/* Family Stat */}
-            <div className="text-center p-6 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow border border-teal-50">
-              <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center">
-                <Heart size={28} className="text-white" />
-              </div>
-              <p className="text-4xl font-bold text-teal-700">30+</p>
-              <p className="text-teal-600/70 font-medium">Family Members</p>
-            </div>
-
-            {/* Video Stat */}
-            <div className="text-center p-6 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow border border-teal-50">
-              <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-500 flex items-center justify-center">
-                <Play size={28} className="text-white" />
-              </div>
-              <p className="text-4xl font-bold text-teal-700">1</p>
-              <p className="text-teal-600/70 font-medium">Special Video</p>
-            </div>
+          {/* Video Player */}
+          <div className="animate-fade-up-delay-1">
+            <VideoPlayer
+              youtubeId={mainVideo.youtubeId}
+              title={mainVideo.title}
+              description={mainVideo.description}
+              thumbnail={mainVideo.thumbnail}
+            />
           </div>
         </div>
       </section>
 
-      {/* Featured Photos Preview */}
-      <section className="py-16 sm:py-20">
+      {/* Teaser Photo Strip */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-fade-up">
             <h2 className="font-serif text-3xl sm:text-4xl text-teal-800 font-semibold mb-3">
-              Featured Moments
+              Captured Moments
             </h2>
-            <p className="text-teal-600/70 text-lg max-w-2xl mx-auto">
-              A glimpse of the wonderful memories we created together
+            <p className="text-teal-600/70 text-lg max-w-xl mx-auto">
+              A glimpse of the love, laughter, and joy we shared together
             </p>
           </div>
 
-          {/* Photo Grid Preview */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10">
-            {featuredPhotos.slice(0, 4).map((photo, index) => (
-              <div
+          {/* Photo Grid - 4 Highlights */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {highlightPhotos.map((photo, index) => (
+              <Link
                 key={photo.id}
+                href="/gallery"
                 className={`group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animate-fade-up-delay-${index + 1}`}
               >
                 <Image
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover transform group-hover:scale-110 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
+                {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
+              </Link>
             ))}
-          </div>
-
-          {/* View All Button */}
-          <div className="text-center">
-            <Link
-              href="/gallery"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white font-medium text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <Images size={24} />
-              View All Photos
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Video Section CTA */}
+      {/* Call to Action */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-64 h-64 bg-teal-500/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl" />
+          <div className="absolute bottom-10 right-10 w-48 h-48 bg-emerald-400/20 rounded-full blur-2xl" />
         </div>
-
+        
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/10 flex items-center justify-center">
-            <Play size={40} className="text-white ml-1" />
-          </div>
-          <h2 className="font-serif text-3xl sm:text-4xl text-white font-semibold mb-4">
-            Watch Our Reunion Video
+          {/* CTA Content */}
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white font-semibold mb-4 animate-fade-up">
+            Ready to See More?
           </h2>
-          <p className="text-teal-100 text-lg mb-8 max-w-xl mx-auto">
-            {familyVideo.description}
+          <p className="text-teal-100/80 text-lg sm:text-xl max-w-2xl mx-auto mb-10 animate-fade-up-delay-1">
+            Explore the full collection of photos from our reunion. 
+            Relive every smile, every hug, and every precious moment.
           </p>
-          <Link
-            href={`/video/${familyVideo.id}`}
-            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-teal-900 font-semibold text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <Play size={28} />
-            Play Video
-          </Link>
+
+          {/* CTA Button */}
+          <div className="animate-fade-up-delay-2">
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-teal-900 font-semibold text-xl rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+            >
+              View Full Gallery
+              <ArrowRight size={24} />
+            </Link>
+          </div>
         </div>
       </section>
     </div>
