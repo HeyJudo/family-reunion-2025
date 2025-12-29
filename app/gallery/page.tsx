@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowLeft, Images, Lightbulb } from "lucide-react";
 import PhotoGrid from "@/components/PhotoGrid";
-import { galleryPhotos, eventDetails } from "@/data/mockData";
+import { getReunionPhotos } from "@/lib/cloudinary";
+import { eventDetails } from "@/data/mockData";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
   description: `Browse all photos from the ${eventDetails.familyName} Family Reunion 2025. Download and share your favorite memories.`,
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const photos = await getReunionPhotos();
+
   return (
     <div className="bg-gradient-to-b from-white via-teal-50/20 to-white min-h-screen">
       {/* Header Section */}
@@ -39,7 +42,7 @@ export default function GalleryPage() {
             <div className="flex items-center gap-2 px-4 py-2 bg-teal-50 border border-teal-100 rounded-full">
               <Images size={20} className="text-teal-500" />
               <span className="text-teal-700 font-medium">
-                {galleryPhotos.length} Photos
+                {photos.length} Photos
               </span>
             </div>
           </div>
@@ -64,7 +67,19 @@ export default function GalleryPage() {
       {/* Gallery Grid */}
       <section className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <PhotoGrid photos={galleryPhotos} />
+          {photos.length === 0 ? (
+            <div className="text-center py-20">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-teal-100 flex items-center justify-center">
+                <Images size={40} className="text-teal-400" />
+              </div>
+              <h2 className="font-serif text-2xl text-teal-700 mb-2">No Photos Yet</h2>
+              <p className="text-teal-600/70 text-lg max-w-md mx-auto">
+                No memories uploaded to the &apos;onofre-reunion-2025&apos; folder yet.
+              </p>
+            </div>
+          ) : (
+            <PhotoGrid photos={photos} />
+          )}
         </div>
       </section>
 

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { X, Download, ChevronLeft, ChevronRight } from "lucide-react";
-import type { Photo } from "@/data/mockData";
+import type { ReunionPhoto } from "@/lib/cloudinary";
 
 interface PhotoGridProps {
-  photos: Photo[];
+  photos: ReunionPhoto[];
   columns?: number;
 }
 
@@ -47,14 +47,14 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
   );
 
   // Download handler
-  const handleDownload = async (photo: Photo) => {
+  const handleDownload = async (photo: ReunionPhoto) => {
     try {
-      const response = await fetch(photo.src);
+      const response = await fetch(photo.url);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `family-reunion-${photo.id}.jpg`;
+      link.download = `family-reunion-${photo.id.split("/").pop()}.jpg`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -62,39 +62,33 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
     } catch (error) {
       console.error("Download failed:", error);
       // Fallback: open in new tab
-      window.open(photo.src, "_blank");
+      window.open(photo.url, "_blank");
     }
   };
 
   return (
     <>
-      {/* Masonry Grid */}
-      <div className="masonry-grid">
+      {/* Photo Grid - Uniform spacing */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         {photos.map((photo, index) => (
-          <div
-            key={photo.id}
-            className="masonry-item"
-          >
+          <div key={photo.id}>
             <button
               onClick={() => openLightbox(index)}
-              className="relative w-full group rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-teal-400/50"
-              aria-label={`View photo: ${photo.alt}`}
+              className="relative w-full aspect-square group rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-teal-400/50"
+              aria-label={`View photo ${index + 1}`}
             >
-              <div
-                className="relative w-full"
-                style={{ aspectRatio: `${photo.width}/${photo.height}` }}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-              </div>
+              <CldImage
+                src={photo.id}
+                alt={`Reunion photo ${index + 1}`}
+                width={800}
+                height={800}
+                crop="fill"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+              
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
             </button>
           </div>
         ))}
@@ -149,13 +143,12 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
             className="relative max-w-[90vw] max-h-[85vh] flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
-              src={selectedPhoto.src}
-              alt={selectedPhoto.alt}
+            <CldImage
+              src={selectedPhoto.id}
+              alt={`Reunion photo ${selectedIndex !== null ? selectedIndex + 1 : 0}`}
               width={selectedPhoto.width}
               height={selectedPhoto.height}
               className="max-w-full max-h-[85vh] object-contain rounded-lg"
-              priority
             />
           </div>
 
@@ -167,11 +160,6 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
             <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
               {/* Caption */}
               <div className="text-center sm:text-left">
-                {selectedPhoto.caption && (
-                  <h3 className="text-white text-xl font-serif font-semibold">
-                    {selectedPhoto.caption}
-                  </h3>
-                )}
                 <p className="text-white/70 text-base mt-1">
                   Photo {selectedIndex !== null ? selectedIndex + 1 : 0} of {photos.length}
                 </p>
