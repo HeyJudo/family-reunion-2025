@@ -15,30 +15,45 @@ export interface ReunionPhoto {
   height: number;
 }
 
-// Fetch photos from the onofre-reunion-2025 folder
+// Fetch ALL photos from the onofre-reunion-2025 folder (handles 500+ photos with pagination)
 export async function getReunionPhotos(): Promise<ReunionPhoto[]> {
   try {
-    const result = await cloudinary.search
-      .expression("folder:onofre-reunion-2025")
-      .sort_by("created_at", "desc")
-      .max_results(100)
-      .execute();
+    const allPhotos: ReunionPhoto[] = [];
+    let nextCursor: string | undefined = undefined;
 
-    const photos: ReunionPhoto[] = result.resources.map(
-      (resource: {
-        public_id: string;
-        secure_url: string;
-        width: number;
-        height: number;
-      }) => ({
-        id: resource.public_id,
-        url: resource.secure_url,
-        width: resource.width,
-        height: resource.height,
-      })
-    );
+    // Paginate through all results (Cloudinary max is 500 per request)
+    do {
+      const searchQuery = cloudinary.search
+        .expression("folder:onofre-reunion-2025")
+        .sort_by("created_at", "desc")
+        .max_results(500);
 
-    return photos;
+      // Add cursor for pagination if we have one
+      if (nextCursor) {
+        searchQuery.next_cursor(nextCursor);
+      }
+
+      const result = await searchQuery.execute();
+
+      const photos: ReunionPhoto[] = result.resources.map(
+        (resource: {
+          public_id: string;
+          secure_url: string;
+          width: number;
+          height: number;
+        }) => ({
+          id: resource.public_id,
+          url: resource.secure_url,
+          width: resource.width,
+          height: resource.height,
+        })
+      );
+
+      allPhotos.push(...photos);
+      nextCursor = result.next_cursor;
+    } while (nextCursor);
+
+    return allPhotos;
   } catch (error) {
     console.error("Error fetching photos from Cloudinary:", error);
     return [];
