@@ -1,17 +1,25 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { CldImage } from "next-cloudinary";
-import { X, Download, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, Download, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import type { ReunionPhoto } from "@/lib/cloudinary";
 
 interface PhotoGridProps {
   photos: ReunionPhoto[];
   columns?: number;
+  initialLoadCount?: number;
 }
 
-export default function PhotoGrid({ photos }: PhotoGridProps) {
+const PHOTOS_PER_LOAD = 24; // Load 24 photos at a time (fits nicely in 4-column grid)
+
+export default function PhotoGrid({ photos, initialLoadCount = PHOTOS_PER_LOAD }: PhotoGridProps) {
+  const [visibleCount, setVisibleCount] = useState(initialLoadCount);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  
+  // Only render visible photos for performance
+  const visiblePhotos = useMemo(() => photos.slice(0, visibleCount), [photos, visibleCount]);
+  const hasMore = visibleCount < photos.length;
   const selectedPhoto = selectedIndex !== null ? photos[selectedIndex] : null;
 
   const openLightbox = (index: number) => {
@@ -46,6 +54,11 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
     [closeLightbox, goToPrevious, goToNext]
   );
 
+  // Load more photos
+  const loadMore = useCallback(() => {
+    setVisibleCount((prev) => Math.min(prev + PHOTOS_PER_LOAD, photos.length));
+  }, [photos.length]);
+
   // Download handler
   const handleDownload = async (photo: ReunionPhoto) => {
     try {
@@ -70,7 +83,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
     <>
       {/* Photo Grid - Uniform spacing */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-        {photos.map((photo, index) => (
+        {visiblePhotos.map((photo, index) => (
           <div key={photo.id}>
             <button
               onClick={() => openLightbox(index)}
@@ -85,6 +98,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
                 crop="fill"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
               />
               
               {/* Hover Overlay */}
@@ -93,6 +107,19 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
           </div>
         ))}
       </div>
+
+      {/* Load More Button */}
+      {hasMore && (
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={loadMore}
+            className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-medium text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <ChevronDown size={24} />
+            Load More Photos ({photos.length - visibleCount} remaining)
+          </button>
+        </div>
+      )}
 
       {/* Lightbox Modal */}
       {selectedPhoto && (
