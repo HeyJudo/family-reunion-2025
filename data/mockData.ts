@@ -23,35 +23,35 @@ export interface Video {
 export const highlightPhotos: Photo[] = [
   {
     id: "h1",
-    src: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&h=300&fit=crop",
-    alt: "Family gathering around the table",
+    src: "/[1] canoza sibs 2.jpg",
+    alt: "Canoza siblings together",
     width: 400,
     height: 300,
-    caption: "The Grand Feast",
+    caption: "Siblings Reunited",
   },
   {
     id: "h2",
-    src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=300&fit=crop",
-    alt: "Group photo of the family",
+    src: "/[2] canoza sibs w spouses 4.jpg",
+    alt: "Canoza siblings with their spouses",
     width: 400,
     height: 300,
-    caption: "All Together",
+    caption: "Family & Spouses",
   },
   {
     id: "h3",
-    src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=300&fit=crop",
-    alt: "Kids playing in the garden",
+    src: "/IMG-3761cb55f130732dfd3fc68ad4980f65-V.jpg",
+    alt: "Family gathering moment",
     width: 400,
     height: 300,
-    caption: "Fun & Games",
+    caption: "Precious Moments",
   },
   {
     id: "h4",
-    src: "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?w=400&h=300&fit=crop",
-    alt: "Grandparents with grandchildren",
+    src: "/IMG-cb0a2e9a05d0b97d3a8628dec29502d9-V.jpg",
+    alt: "Family celebration",
     width: 400,
     height: 300,
-    caption: "Generations",
+    caption: "Celebrating Together",
   },
 ];
 
@@ -172,8 +172,8 @@ export const mainVideo: Video = {
   id: "v1",
   title: "Family Reunion 2025 Highlights",
   description: "Relive the best moments from our wonderful gathering. From the morning setup to the evening farewell, this video captures the love and joy we shared.",
-  youtubeId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
-  thumbnail: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=450&fit=crop",
+  youtubeId: "j-NqdAGZy5s",
+  thumbnail: "/IMG-46b44c2d379585b24b8e17e938f32ade-V.jpg",
 };
 
 // Event details
