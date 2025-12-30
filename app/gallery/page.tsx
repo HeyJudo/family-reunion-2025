@@ -5,6 +5,9 @@ import { getReunionPhotos } from "@/lib/cloudinary";
 import { eventDetails } from "@/data/mockData";
 import type { Metadata } from "next";
 
+// Force dynamic rendering - fetch fresh data on every request
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: `Photo Gallery | ${eventDetails.familyName} Family Reunion 2025`,
   description: `Browse all photos from the ${eventDetails.familyName} Family Reunion 2025. Download and share your favorite memories.`,
